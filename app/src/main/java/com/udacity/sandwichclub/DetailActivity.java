@@ -81,7 +81,7 @@ public class DetailActivity extends AppCompatActivity {
         Sandwich sandwich = JsonUtils.parseSandwichJson(json);
         if (sandwich == null) {
             // Sandwich data unavailable
-            //closeOnError();
+            closeOnError();
             return;
         }
 
