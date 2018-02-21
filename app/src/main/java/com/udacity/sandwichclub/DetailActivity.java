@@ -70,6 +70,7 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
+        // Collapsing toolbar layout inspired from http://www.tutos-android.com/design-support-library-collapsingtoolbarlayout
         setSupportActionBar(toolbar);
         ViewCompat.setTransitionName(findViewById(R.id.appBarLayout), "Name");
         collapsingToolbar.setTitle("My Sandwich");
