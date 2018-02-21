@@ -55,8 +55,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
 
-        ImageView ingredientsIv = findViewById(R.id.image_iv);
-
         Intent intent = getIntent();
         if (intent == null) {
             closeOnError();
@@ -88,7 +86,7 @@ public class DetailActivity extends AppCompatActivity {
         populateUI();
         Picasso.with(this)
                 .load(sandwich.getImage())
-                .into(ingredientsIv);
+                .into(imageIV);
 
         setTitle(sandwich.getMainName());
     }
