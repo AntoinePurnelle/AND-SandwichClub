@@ -1,22 +1,25 @@
-package com.udacity.sandwichclub;
+package net.ouftech.sandwichclub;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-import com.udacity.sandwichclub.model.Sandwich;
-import com.udacity.sandwichclub.utils.JsonUtils;
+
+import net.ouftech.sandwichclub.model.Sandwich;
+import net.ouftech.sandwichclub.utils.JsonUtils;
+
+import org.json.JSONException;
 
 import java.util.List;
 
@@ -50,8 +53,6 @@ public class DetailActivity extends AppCompatActivity {
     TextView ingredientsLabelTv;
     @BindView(R.id.detail_ingredients_tv)
     TextView ingredientsTv;
-    @BindView(R.id.coordinator_layout)
-    CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,12 @@ public class DetailActivity extends AppCompatActivity {
 
         String[] sandwiches = getResources().getStringArray(R.array.sandwich_details);
         String json = sandwiches[position];
-        Sandwich sandwich = JsonUtils.parseSandwichJson(json);
+        Sandwich sandwich = null;
+        try {
+            sandwich = JsonUtils.parseSandwichJson(json);
+        } catch (JSONException e) {
+            Log.e("DetailActivity", "Error while parsing JSON", e);
+        }
         if (sandwich == null) {
             // Sandwich data unavailable
             closeOnError();

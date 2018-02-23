@@ -1,43 +1,14 @@
-package com.udacity.sandwichclub.model;
-
-import com.google.gson.annotations.SerializedName;
+package net.ouftech.sandwichclub.model;
 
 import java.util.List;
 
 public class Sandwich {
 
-    public class SandwichName {
-        @SerializedName("mainName")
-        private String mainName;
-        @SerializedName("alsoKnownAs")
-        private List<String> alsoKnownAs = null;
-
-        public String getMainName() {
-            return mainName;
-        }
-
-        public void setMainName(String mainName) {
-            this.mainName = mainName;
-        }
-
-        public List<String> getAlsoKnownAs() {
-            return alsoKnownAs;
-        }
-
-        public void setAlsoKnownAs(List<String> alsoKnownAs) {
-            this.alsoKnownAs = alsoKnownAs;
-        }
-    }
-
-    @SerializedName("name")
-    private SandwichName sandwichName;
-    @SerializedName("placeOfOrigin")
+    private String mainName;
+    private List<String> alsoKnownAs = null;
     private String placeOfOrigin;
-    @SerializedName("description")
     private String description;
-    @SerializedName("image")
     private String image;
-    @SerializedName("ingredients")
     private List<String> ingredients = null;
 
     /**
@@ -46,20 +17,29 @@ public class Sandwich {
     public Sandwich() {
     }
 
+    public Sandwich(String mainName, List<String> alsoKnownAs, String placeOfOrigin, String description, String image, List<String> ingredients) {
+        this.mainName = mainName;
+        this.alsoKnownAs = alsoKnownAs;
+        this.placeOfOrigin = placeOfOrigin;
+        this.description = description;
+        this.image = image;
+        this.ingredients = ingredients;
+    }
+
     public String getMainName() {
-        return sandwichName.getMainName();
+        return mainName;
     }
 
     public void setMainName(String mainName) {
-        this.sandwichName.setMainName(mainName);
+        this.mainName = mainName;
     }
 
     public List<String> getAlsoKnownAs() {
-        return this.sandwichName.getAlsoKnownAs();
+        return alsoKnownAs;
     }
 
     public void setAlsoKnownAs(List<String> alsoKnownAs) {
-        this.sandwichName.setAlsoKnownAs(alsoKnownAs);
+        this.alsoKnownAs = alsoKnownAs;
     }
 
     public String getPlaceOfOrigin() {
