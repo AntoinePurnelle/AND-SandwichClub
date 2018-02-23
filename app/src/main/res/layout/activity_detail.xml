@@ -4,8 +4,8 @@
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:expandedTitleMarginStart="70dp"
     android:fitsSystemWindows="true"
+    app:expandedTitleMarginStart="70dp"
     tools:context=".DetailActivity">
 
     <!-- Collapsing toolbar layout inspired from http://www.tutos-android.com/design-support-library-collapsingtoolbarlayout -->
@@ -31,9 +31,9 @@
                 android:id="@+id/detail_image_iv"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:src="@drawable/ic_sandwich"
                 android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"/>
+                android:src="@drawable/ic_sandwich"
+                app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/detail_toolbar"
@@ -55,8 +55,8 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/default_margin">
 
             <TextView
                 android:id="@+id/detail_aka_label_tv"
@@ -78,11 +78,10 @@
                 style="@style/DefaultText"
                 tools:text="Middle East, Levant" />
 
-
             <TextView
                 android:id="@+id/detail_detail_description_label_tv"
                 style="@style/LabelText"
-                android:text="@string/detail_description_label"/>
+                android:text="@string/detail_description_label" />
 
             <TextView
                 android:id="@+id/detail_description_tv"
@@ -98,7 +97,6 @@
                 android:id="@+id/detail_ingredients_tv"
                 style="@style/DefaultText"
                 tools:text="- Shawarma meat (lamb, chicken, turkey, beef) or shawarma falafel\n- Pita or wrap bread\n- Chopped or shredded vegetables\n- Pickles\n- Assorted condiments" />
-
 
         </LinearLayout>
 
