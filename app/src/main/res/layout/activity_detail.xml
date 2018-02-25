@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    app:expandedTitleMarginStart="70dp"
+    app:expandedTitleMarginStart="@dimen/expanded_title_margin_start"
     tools:context="net.ouftech.sandwichclub.DetailActivity">
 
     <!-- Collapsing toolbar layout inspired from http://www.tutos-android.com/design-support-library-collapsingtoolbarlayout -->

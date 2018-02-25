@@ -9,6 +9,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.ouftech.sandwichclub.model.Sandwich.*;
+
 public class JsonUtils {
 
     public static Sandwich parseSandwichJson(String json) throws JSONException {
@@ -17,39 +19,34 @@ public class JsonUtils {
 
         JSONObject sandwichJson = new JSONObject(json);
 
-        if (sandwichJson.has("name")) {
-            JSONObject name = sandwichJson.getJSONObject("name");
+        if (sandwichJson.has(NAME_KEY)) {
+            JSONObject name = sandwichJson.optJSONObject(NAME_KEY);
 
-            if (name.has("mainName"))
-                sandwich.setMainName(name.getString("mainName"));
+            sandwich.setMainName(name.optString(MAIN_NAME_KEY));
 
-            if (name.has("alsoKnownAs")) {
-                List<String> alsoKnownAsList = getListFromJSONArray(name.getJSONArray("alsoKnownAs"));
-                sandwich.setAlsoKnownAs(alsoKnownAsList);
-            }
+            List<String> alsoKnownAsList = getListFromJSONArray(name.optJSONArray(AKAS_KEY));
+            sandwich.setAlsoKnownAs(alsoKnownAsList);
         }
 
-        if (sandwichJson.has("placeOfOrigin"))
-            sandwich.setPlaceOfOrigin(sandwichJson.getString("placeOfOrigin"));
+        sandwich.setPlaceOfOrigin(sandwichJson.optString(ORIGIN_KEY));
 
-        if (sandwichJson.has("description"))
-            sandwich.setDescription(sandwichJson.getString("description"));
+        sandwich.setDescription(sandwichJson.optString(DESCRIPTION_KEY));
 
-        if (sandwichJson.has("image"))
-            sandwich.setImage(sandwichJson.getString("image"));
+        sandwich.setImage(sandwichJson.optString(IMAGE_KEY));
 
-        if (sandwichJson.has("ingredients")) {
-            List<String> alsoKnownAsList = getListFromJSONArray(sandwichJson.getJSONArray("ingredients"));
-            sandwich.setIngredients(alsoKnownAsList);
-        }
+        List<String> alsoKnownAsList = getListFromJSONArray(sandwichJson.optJSONArray(INGREDIENTS_KEY));
+        sandwich.setIngredients(alsoKnownAsList);
 
         return sandwich;
     }
 
     private static List<String> getListFromJSONArray(JSONArray jsonArray) throws JSONException {
+
         List<String> alsoKnownAsList = new ArrayList<>();
-        for (int i = 0; i < jsonArray.length(); i++) {
-            alsoKnownAsList.add(jsonArray.getString(i));
+        if (jsonArray != null) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                alsoKnownAsList.add(jsonArray.getString(i));
+            }
         }
 
         return alsoKnownAsList;
